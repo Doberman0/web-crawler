@@ -14,6 +14,14 @@ func New(
 	}
 }
 
+func (wc *WebCrawler) GetVisitedUrls() map[string]string {
+	return wc.VisitedURLs
+}
+
+func (wc *WebCrawler) GetUrlsToVisit() []string {
+	return wc.URLsToVisit
+}
+
 func (wc *WebCrawler) AddEntriesFromURL(currentUrl string) {
 
 }
