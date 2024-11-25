@@ -32,6 +32,19 @@ func (wc *WebCrawler) GetUrlsToVisit() *queue.Queue {
 	return wc.URLsToVisit
 }
 
-func (wc *WebCrawler) AddEntriesFromURL(currentUrl string) {
+func (wc *WebCrawler) getRelativeLinksFromUrl(url string) []string {
+	var relativeUrls []string
+	return relativeUrls
+}
+
+func (wc *WebCrawler) addEntriesFromURL() {
+	currentUrl := wc.URLsToVisit.Dequeue().(string)
+	urlsToAdd := wc.getRelativeLinksFromUrl(currentUrl)
+	for _, url := range urlsToAdd {
+		wc.URLsToVisit.Enqueue(url)
+	}
+}
+
+func (wc *WebCrawler) Crawl() {
 
 }
