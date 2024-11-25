@@ -1,16 +1,26 @@
 package web_crawler
 
+import (
+	"github.com/golang-collections/collections/queue"
+)
+
 type WebCrawler struct {
 	VisitedURLs map[string]string
-	URLsToVisit []string
+	URLsToVisit *queue.Queue // Change to queue of string
 }
 
 func New(
 	entries []string,
 ) *WebCrawler {
+
+	q := queue.New()
+	for _, entry := range entries {
+		q.Enqueue(entry)
+	}
+
 	return &WebCrawler{
 		VisitedURLs: map[string]string{},
-		URLsToVisit: entries,
+		URLsToVisit: q,
 	}
 }
 
@@ -18,7 +28,7 @@ func (wc *WebCrawler) GetVisitedUrls() map[string]string {
 	return wc.VisitedURLs
 }
 
-func (wc *WebCrawler) GetUrlsToVisit() []string {
+func (wc *WebCrawler) GetUrlsToVisit() *queue.Queue {
 	return wc.URLsToVisit
 }
 
