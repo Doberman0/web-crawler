@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	entries := []string{""}
+	rootPage := ""
+	entries := []string{rootPage}
 	wc := web_crawler.New(entries)
 
 	fmt.Printf("Got the web crawler: %v", wc)
